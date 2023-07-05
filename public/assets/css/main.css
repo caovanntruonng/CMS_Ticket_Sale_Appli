@@ -33,6 +33,11 @@ h6 {
     color: #1E0D03;
 }
 
+input:focus {
+    outline: none;
+    border: none;
+}
+
 /* flatpickr */
 .date {
     display: flex;
@@ -190,10 +195,6 @@ nav .search input[type="search"]::placeholder {
     opacity: 0.3;
 }
 
-nav .search input[type="search"]:focus {
-    outline: none;
-    border: none;
-}
 
 nav .search button {
     width: 65%;
@@ -299,22 +300,24 @@ article .revenue-money span {
 }
 
 article .pieChartContainer {
-    padding-top: 5%;
+    padding-top: 2%;
     display: flex;
     height: max-content;
 }
 
 article .pieCharts {
-    width: 40%;
+    width: 500px;
     display: flex;
     justify-content: space-between;
     margin: 0 10%;
-  }
-  
+    overflow-x: auto;
+}
+
 
 article .pieChart {
     width: 200px !important;
     height: 200px !important;
+    flex: 0 0 auto;
 }
 
 .used-ticket-notes,

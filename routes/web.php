@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Home page
+Route::get('/', [MyController::class, 'showIndex'])->name('HomePage');
+
+// Ticket Management Page
+Route::get('/ticket-management', [MyController::class, 'showTicketManagementPage'])->name('TicketManagementPage');
+
+// Ticket Reconciliation Page
+Route::get('/ticket-reconciliation', [MyController::class, 'showTicketReconciliationPage'])->name('TicketReconciliationPage');
+
+// Event List Page
+Route::get('/event-list', [MyController::class, 'showEventListPage'])->name('EventListPage');
+
+// Device Management Page
+Route::get('/device-management', [MyController::class, 'showDeviceManagementPage'])->name('DeviceManagementPage');
+
+// Services Page
+Route::get('/services', [MyController::class, 'showServicesPage'])->name('ServicesPage');
