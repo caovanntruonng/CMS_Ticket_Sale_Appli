@@ -32,9 +32,7 @@
         <div class="pieCharts">
 
             @foreach ($pieChart as $item)
-
-            <canvas id="" class="pieChart"></canvas>
-
+            <canvas id="{{ $item['package_code'] }}" class="pieChart"></canvas>
             @endforeach
 
         </div>

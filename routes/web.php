@@ -31,3 +31,6 @@ Route::get('/device-management', [MyController::class, 'showDeviceManagementPage
 
 // Services Page
 Route::get('/services', [MyController::class, 'showServicesPage'])->name('ServicesPage');
+
+// Định nghĩa route để xử lý yêu cầu lọc vé và gọi phương thức handleFilterData trong YourController
+Route::get('/ticket-management/filter-data', [MyController::class, 'handleFilterData'])->name('FilterData');

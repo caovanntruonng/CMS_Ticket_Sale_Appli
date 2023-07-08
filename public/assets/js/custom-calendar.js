@@ -46,12 +46,22 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     const selectedDate = new Date();
     flatpickr("#lineChartDatePicker", {
-        dateFormat: "F, Y",
+        dateFormat: "m-Y",
         locale: customVietnameseLocale,
         defaultDate: selectedDate,
     });
     flatpickr("#pieChartDatePicker", {
-        dateFormat: "F, Y",
+        dateFormat: "m-Y",
+        locale: customVietnameseLocale,
+        defaultDate: selectedDate,
+    });
+    flatpickr("#startDatePicker", {
+        dateFormat: "d/m/Y",
+        locale: customVietnameseLocale,
+        defaultDate: selectedDate,
+    });
+    flatpickr("#endDatePicker", {
+        dateFormat: "d/m/Y",
         locale: customVietnameseLocale,
         defaultDate: selectedDate,
     });
