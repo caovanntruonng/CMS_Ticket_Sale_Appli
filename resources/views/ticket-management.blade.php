@@ -34,13 +34,14 @@
                 <th>Tên sự kiện</th>
                 <th>Tình trạng sử dụng</th>
                 <th>Ngày sử dụng</th>
-                <th>Ngày xuất vé</th>
+                <th>Hạn sử dụng</th>
                 <th>Cổng check - in</th>
             </tr>
 
+            <?php $index = ($tickets->currentPage() - 1) * $tickets->perPage() + 1; ?>
             @foreach ($tickets as $ticket)
             <tr>
-                <td>{{ $ticket->id }}</td>
+                <td>{{ $index++ }}</td>
                 <td>{{ $ticket->{'package_code'} }}</td>
                 <td>{{ $ticket->{'ticket_code'} }}</td>
                 <td>{{ $ticket->{'event_name'} }}</td>

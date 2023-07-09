@@ -13,7 +13,7 @@ class MyController extends Controller
         // Gọi function và lấy dữ liệu trả về
         $pieChart = $this->processPieChartData();
 
-        $lineChart = [];
+        $lineChart = $this->processLineChartData();
 
         return view('index', compact('lineChart', 'pieChart'));
     }
@@ -130,4 +130,24 @@ class MyController extends Controller
         $pieChart = array_values($result);
         return $pieChart;
     }
+
+    public function processLineChartData()
+    {
+        $ticketTotals = DB::table('tickets')
+            ->join('ticket_packages', 'tickets.package_code', '=', 'ticket_packages.package_code')
+            ->select(DB::raw('DATE(tickets.start_date) AS date'), DB::raw('SUM(ticket_packages.ticket_price) AS total_price'))
+            ->groupBy('date')
+            ->get();
+    
+        $result = [];
+        foreach ($ticketTotals as $item) {
+            $date = $item->date;
+            $totalPrice = $item->total_price;
+    
+            $result[$date] = $totalPrice;
+        }
+    
+        return $result;
+    }
+    
 }
