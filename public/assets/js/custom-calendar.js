@@ -65,4 +65,9 @@ document.addEventListener("DOMContentLoaded", function () {
         locale: customVietnameseLocale,
         defaultDate: selectedDate,
     });
+    flatpickr("#checkTicketsDatePicker", {
+        dateFormat: "d/m/Y",
+        locale: customVietnameseLocale,
+        defaultDate: selectedDate,
+    });
 });

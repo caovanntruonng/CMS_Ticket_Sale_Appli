@@ -187,7 +187,7 @@ nav {
 }
 
 .search {
-    width: 30%;
+    width: 400px;
     display: grid;
     grid-template-columns: auto auto;
 }
@@ -256,8 +256,14 @@ article {
     padding: 1.5% 2% 0% 1.5%;
 }
 
-
 /* home page */
+/* .home-page {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 1.5% 2% 0% 1.5%;
+    width: 100%;
+    height: 100%;
+} */
 
 .home-page h1 {
     font-size: 29px;
@@ -406,6 +412,16 @@ article {
     color: #FF993C;
 }
 
+.ticket-management .ticket-package-list .active {
+    border-bottom: solid 3px #FF993C;
+}
+
+.ticket-management .ticket-package-list .active a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FF993C;
+}
+
 .ticket-management .ticket-filter {
     display: flex;
     justify-content: space-between;
@@ -419,7 +435,6 @@ article {
 .ticket-management .ticket-filter .search button {
     background-color: #F7F7F8;
 }
-
 
 
 .ticket-management .ticket-board table {
@@ -610,5 +625,122 @@ article {
     width: 70%;
     font-size: 12px;
     font-weight: 500;
+    text-align: center;
+}
+
+/* Ticket Reconciliation Page */
+
+.ticket-reconciliation {
+    display: flex;
+}
+
+.ticket-reconciliation .data-display {
+    width: 75%;
+}
+
+.ticket-reconciliation .filter {
+    width: 25%;
+}
+
+.ticket-reconciliation .data-display .ticket-filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.ticket-reconciliation .data-display h1 {
+    font-size: 29px;
+    font-weight: bolder;
+    line-height: 45px;
+    color: #1e0d03;
+}
+
+.ticket-reconciliation .data-display .ticket-filter .search input,
+.ticket-reconciliation .data-display .ticket-filter .search button {
+    background-color: #F7F7F8;
+}
+
+.ticket-reconciliation .data-display .ticket-board table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.ticket-reconciliation .data-display .ticket-board table tr:first-child th:first-child {
+    border-top-left-radius: 9px;
+}
+
+.ticket-reconciliation .data-display .ticket-board table tr:first-child th:last-child {
+    border-top-right-radius: 9px;
+}
+
+.ticket-reconciliation .data-display .ticket-board table th {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 26px;
+}
+
+.ticket-reconciliation .data-display .ticket-board table td {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 22px;
+    vertical-align: middle;
+}
+
+.ticket-reconciliation .filter h2 {
+    font-size: 24px;
+    font-weight: bolder;
+    line-height: 45px;
+    color: #1e0d03;
+}
+
+.ticket-reconciliation .filter .form-select {
+    height: 35px;
+    width: 100%;
+    padding-left: 5%;
+    background-color: rgba(241, 244, 248, 1);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: rgba(124, 125, 149, 1);
+    border: none;
+}
+
+.ticket-reconciliation .filter .form-select:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.ticket-reconciliation .filter .table h3 {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 26px;
+}
+
+.ticket-reconciliation .filter .radio-group .radio {
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5%;
+    align-items: center;
+}
+
+.ticket-reconciliation .filter .radio-group .radio input {
+    margin-right: 5%;
+    width: 18px;
+    height: 18px;
+}
+
+.ticket-reconciliation .filter span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ticket-reconciliation .filter .button-hover {
+    padding: 5px 50px;
+}
+
+.ticket-reconciliation .filter .submit {
     text-align: center;
 }

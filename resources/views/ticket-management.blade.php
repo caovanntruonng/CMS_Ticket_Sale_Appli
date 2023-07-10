@@ -4,12 +4,15 @@
 <div class="ticket-management">
     <h1>Danh sách vé</h1>
     <div class="ticket-package-list">
-        <div>
-            <a href="">Gói gia đình</a>
+
+        @foreach ($ticketPackages as $ticketPackage)
+        <div class="{{ session('packageCode') === $ticketPackage->package_code ? 'active' : '' }}">
+            <a href="{{ route('showTicketPackage', ['package_code' => $ticketPackage->package_code]) }}">
+                {{ $ticketPackage->package_name }}
+            </a>
         </div>
-        <div>
-            <a href="">Gói sự kiện</a>
-        </div>
+        @endforeach
+
     </div>
     <div class="ticket-filter">
         <form action="" method="get" class="search">
@@ -37,7 +40,6 @@
                 <th>Hạn sử dụng</th>
                 <th>Cổng check - in</th>
             </tr>
-
             <?php $index = ($tickets->currentPage() - 1) * $tickets->perPage() + 1; ?>
             @foreach ($tickets as $ticket)
             <tr>
@@ -67,7 +69,6 @@
                 <td>{{ $ticket->{'check_in_gate'} }}</td>
             </tr>
             @endforeach
-
         </table>
 
         {{-- Hiển thị các liên kết đến các trang --}}

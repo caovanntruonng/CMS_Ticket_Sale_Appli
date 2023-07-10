@@ -20,12 +20,22 @@ class MyController extends Controller
 
     public function showTicketManagementPage()
     {
-        $tickets = DB::table('tickets')->paginate(8);
-
+        $ticketPackage = DB::table('ticket_packages')->first();
+        $packageCode = $ticketPackage ? $ticketPackage->package_code : null;
+    
+        $ticketsQuery = DB::table('tickets');
+        if ($packageCode) {
+            session(['packageCode' => $packageCode]);
+            $ticketsQuery->where('package_code', $packageCode);
+        }
+        $tickets = $ticketsQuery->paginate(8);
+    
         $distinctUsageStatus = DB::table('tickets')->distinct()->pluck('usage_status');
         $distinctCheckIn = DB::table('tickets')->distinct()->pluck('check_in_gate');
-
-        return view('ticket-management', compact('tickets', 'distinctUsageStatus', 'distinctCheckIn'));
+    
+        $ticketPackages = DB::table('ticket_packages')->get();
+    
+        return view('ticket-management', compact('tickets', 'distinctUsageStatus', 'distinctCheckIn', 'ticketPackages'));
     }
 
     public function showTicketReconciliationPage()
@@ -56,7 +66,7 @@ class MyController extends Controller
         // Lấy dữ liệu từ request
         $startDate = $request->input('start-date');
         $endDate = $request->input('end-date');
-        $status = $request->input('status-checkbox');
+        $status = $request->input('status-radio');
         $checkIn = $request->input('check-in-checkbox');
 
         // Chuyển đổi định dạng ngày trong biểu mẫu thành định dạng tương ứng trong cơ sở dữ liệu
@@ -65,6 +75,12 @@ class MyController extends Controller
 
         // Xử lý dữ liệu và thực hiện các hành động khác
         $ticketsQuery = DB::table('tickets');
+
+        $packageCode = session('packageCode');
+
+        if (isset($packageCode)) {
+            $ticketsQuery->where('package_code', $packageCode);
+        }
 
         $ticketsQuery->where('start_date', '>=', $formattedStartDate);
         $ticketsQuery->where('end_date', '<=', $formattedEndDate);
@@ -77,8 +93,10 @@ class MyController extends Controller
 
         $tickets = $ticketsQuery->paginate(8);
 
+        $ticketPackages = DB::table('ticket_packages')->get();
+
         // Trả về kết quả hoặc chuyển hướng đến một trang khác
-        return view('ticket-management', compact('tickets', 'distinctUsageStatus', 'distinctCheckIn'));
+        return view('ticket-management', compact('tickets', 'distinctUsageStatus', 'distinctCheckIn', 'ticketPackages'));
     }
 
     public function processPieChartData()
@@ -138,16 +156,28 @@ class MyController extends Controller
             ->select(DB::raw('DATE(tickets.start_date) AS date'), DB::raw('SUM(ticket_packages.ticket_price) AS total_price'))
             ->groupBy('date')
             ->get();
-    
+
         $result = [];
         foreach ($ticketTotals as $item) {
             $date = $item->date;
             $totalPrice = $item->total_price;
-    
+
             $result[$date] = $totalPrice;
         }
-    
+
         return $result;
     }
-    
+
+    public function showTicketPackage($packageCode)
+    {
+        session(['packageCode' => $packageCode]);
+        $tickets = DB::table('tickets')->where('package_code', $packageCode)->paginate(8);
+
+        $distinctUsageStatus = DB::table('tickets')->distinct()->pluck('usage_status');
+        $distinctCheckIn = DB::table('tickets')->distinct()->pluck('check_in_gate');
+
+        $ticketPackages = DB::table('ticket_packages')->get();
+
+        return view('ticket-management', compact('tickets', 'distinctUsageStatus', 'distinctCheckIn', 'ticketPackages'));
+    }
 }

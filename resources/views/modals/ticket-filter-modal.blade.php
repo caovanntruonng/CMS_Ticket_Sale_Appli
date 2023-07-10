@@ -2,7 +2,7 @@
 <div class="modal fade ticket-filter-modal" id="myModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form action="{{ route('FilterData') }}" method="GET">
+            <form action="{{ route('FilterData', ['package_code' => session('packageCode')]) }}" method="GET">
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Lọc vé</h4>
@@ -33,13 +33,13 @@
                     <div class="status">
                         <h1>Tình trạng sử dụng</h1>
                         <div class="radio">
-                            <div><input type="radio" name="status-checkbox" id="" value="Tất cả" checked>
+                            <div><input type="radio" name="status-radio" id="" value="Tất cả" checked>
                                 <span>Tất cả</span>
                             </div>
 
                             @foreach ($distinctUsageStatus as $status)
                             <div>
-                                <input type="radio" name="status-checkbox" id="" value="{{ $status }}">
+                                <input type="radio" name="status-radio" id="" value="{{ $status }}">
                                 <span>{{ $status }}</span>
                             </div>
                             @endforeach
