@@ -1,7 +1,7 @@
 @extends('templates.template')
 @section('TicketReconciliationPage')
 
-<div class="ticket-reconciliation">
+<div class="ticket-reconciliation-page">
     <div class="data-display">
         <h1>Đối soát vé</h1>
         <div class="ticket-filter">
@@ -12,7 +12,15 @@
                 </button>
             </form>
             <div class="">
-                <button type="button" class="button-hover">Chốt đối soát</button>
+                @if (session('eventName') === 'Tất cả' || session('eventName') === 'Chưa đối soát')
+                <a href="{{ route('reconciliationStatus') }}">
+                    <button type="button" class="button-hover">Chốt đối soát</button>
+                </a>
+                @elseif (session('eventName') === 'Đã đối soát')
+                <a href="{{ route('exportCSV') }}">
+                    <button type="button" class="button-hover">Xuất file (.csv)</button>
+                </a>
+                @endif
             </div>
         </div>
         <div class="ticket-board">
@@ -26,89 +34,113 @@
                     <th>Cổng check - in</th>
                     <th></th>
                 </tr>
+                <?php $index = ($tickets->currentPage() - 1) * $tickets->perPage() + 1; ?>
+                @foreach ($tickets as $ticket)
                 <tr>
-                    <td>1</td>
-                    <td>205314876321</td>
-                    <td>Hội chợ triển lãm tiêu dùng 2021</td>
-                    <td>14/04/2021</td>
-                    <td>Vé cổng</td>
-                    <td>Cổng 1</td>
-                    <td>Chưa đối soát</td>
+                    <td>{{ $index++ }}</td>
+                    <td>{{ $ticket->{'ticket_code'} }}</td>
+                    <td>{{ $ticket->{'event_name'} }}</td>
+                    <td>{{ $ticket->{'start_date'} }}</td>
+                    <td>{{ $ticket->{'ticket_type'} }}</td>
+                    <td>{{ $ticket->{'check_in_gate'} }}</td>
+                    <td>
+                        @if ($ticket->{'reconciliation_status'} == 'Đã đối soát')
+                        <div class="text-danger">
+                            {{ $ticket->{'reconciliation_status'} }}
+                        </div>
+                        @elseif ($ticket->{'reconciliation_status'} == 'Chưa đối soát')
+                        <div class="">
+                            {{ $ticket->{'reconciliation_status'} }}
+                        </div>
+                        @endif
+                    </td>
                 </tr>
+                @endforeach
+
             </table>
+
+            {{-- Hiển thị các liên kết đến các trang --}}
+            {{ $tickets->appends(request()->query())->links('vendor.pagination.custom_pagination') }}
         </div>
     </div>
     <div class="filter">
-        <form action="" method="get">
+        <form action="{{ route('filterTicketReconciliationPage') }}" method="get">
             <h2>Lọc vé</h2>
-            <select name="" id="" class="form-select">
-                <option value="">Hội chợ triển lãm tiêu dùng 2021</option>
-                <option value="">Hội chợ triển lãm tiêu dùng 2022</option>
-                <option value="">Hội chợ triển lãm tiêu dùng 2023</option>
-            </select>
-            <div class="">
-                <table class="table table-borderless">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <h3>Tình trạng đối soát</h3>
-                            </td>
-                            <td>
-                                <div class="radio-group">
-                                    <div class="radio">
-                                        <input type="radio" name="control-status" id="" checked>
-                                        <span>Tất cả</span>
-                                    </div>
-                                    <div class="radio">
-                                        <input type="radio" name="control-status" id="">
-                                        <span>Đã đối soát</span>
-                                    </div>
-                                    <div class="radio">
-                                        <input type="radio" name="control-status" id="">
-                                        <span>Chưa đối soát</span>
-                                    </div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <select name="select_event" id="" class="form-select">
+                                <option value="Tất cả">Tất cả</option>
+
+                                @foreach ($eventNames as $eventName)
+                                <option value="{{ $eventName }}">{{ $eventName }}</option>
+                                @endforeach
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Tình trạng đối soát</h3>
+                        </td>
+                        <td>
+                            <div class="radio-group">
+                                <div class="radio">
+                                    <input type="radio" name="control-status" id="" value="Tất cả" checked>
+                                    <span>Tất cả</span>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h3>Loại vé</h3>
-                            </td>
-                            <td>
-                                <div>
-                                    <span>Vé cổng</span>
+                                <div class="radio">
+                                    <input type="radio" name="control-status" id="" value="Đã đối soát">
+                                    <span>Đã đối soát</span>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h3>Từ ngày</h3>
-                            </td>
-                            <td>
-                                <div class="date">
-                                    <input type="text" name="date" id="checkTicketsDatePicker" class="">
-                                    <button>
-                                        <i class="fa-regular fa-calendar"></i>
-                                    </button>
+                                <div class="radio">
+                                    <input type="radio" name="control-status" id="" value="Chưa đối soát">
+                                    <span>Chưa đối soát</span>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h3>Đến ngày</h3>
-                            </td>
-                            <td>
-                                <div class="date">
-                                    <input type="text" name="date" id="checkTicketsDatePicker" class="">
-                                    <button>
-                                        <i class="fa-regular fa-calendar"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Loại vé</h3>
+                        </td>
+                        <td>
+                            <div>
+                                <span>Vé cổng</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Từ ngày</h3>
+                        </td>
+                        <td>
+                            <div class="date">
+                                <input type="text" name="start_date" id="checkTicketsDatePicker" class=""
+                                    placeholder="dd/mm/yy">
+                                <button>
+                                    <i class="fa-regular fa-calendar"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Đến ngày</h3>
+                        </td>
+                        <td>
+                            <div class="date">
+                                <input type="text" name="end_date" id="checkTicketsDatePicker" class=""
+                                    placeholder="dd/mm/yy">
+                                <button>
+                                    <i class="fa-regular fa-calendar"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="submit">
                 <button type="submit" class="button-hover">Lọc</button>
             </div>

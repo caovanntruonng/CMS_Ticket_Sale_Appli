@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         datasets: [
                             {
                                 data: Object.values(filteredData),
-                                backgroundColor: ["#4F75FF", "#FF8A48"],
+                                backgroundColor: ["#FF8A48", "#4F75FF"],
                             },
                         ],
                     },

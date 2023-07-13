@@ -1,6 +1,6 @@
 @extends('templates.template')
 @section('DeviceManagementPage')
 
-DeviceManagementPage
+<div class="device-management-page">DeviceManagementPage</div>
 
 @endsection

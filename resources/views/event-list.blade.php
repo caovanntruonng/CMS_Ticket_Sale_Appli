@@ -1,6 +1,6 @@
 @extends('templates.template')
 @section('EventListPage')
 
-EventListPage
+<div class="event-list-page">EventListPage</div>
 
 @endsection

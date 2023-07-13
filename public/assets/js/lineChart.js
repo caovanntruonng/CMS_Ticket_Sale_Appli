@@ -12,12 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Lọc dữ liệu theo tháng và năm
         var filteredData = {};
+        var monthlyTotal = null;
         Object.keys(chartData).forEach(function (date) {
             var monthYear = date.substring(0, 7); // Lấy chuỗi tháng và năm (ví dụ: "2023-07")
             if (monthYear === selectedDate) {
                 filteredData[date] = chartData[date];
+                monthlyTotal += parseFloat(chartData[date]);
             }
         });
+
+        var monthlyTotalElement = document.querySelector('.monthlyTotal');
+        var formattedMonthlyTotal = monthlyTotal !== null ? monthlyTotal.toLocaleString().replaceAll(',', '.') : '0';
+        monthlyTotalElement.textContent = formattedMonthlyTotal;
 
         // Kiểm tra và hủy biểu đồ cũ nếu đã tồn tại
         if (lineChart) {

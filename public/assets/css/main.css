@@ -84,6 +84,12 @@ input:focus {
     color: #FFFFFF;
 }
 
+.no-spinners::-webkit-inner-spin-button,
+.no-spinners::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 /* template */
 
 aside {
@@ -250,20 +256,27 @@ nav .avatar img {
     border-radius: 30px;
 }
 
-article {
+/* article {
     background-color: #FFFFFF;
     border-radius: 20px;
-    padding: 1.5% 2% 0% 1.5%;
+    padding: 20px 20px 0% 20px;
+} */
+
+.home-page,
+.ticket-management-page,
+.ticket-reconciliation-page .data-display,
+.ticket-reconciliation-page .filter,
+.services-page,
+.device-management-page,
+.event-list-page {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 20px 20px 0% 20px;
+    width: 100%;
+    height: 100%;
 }
 
 /* home page */
-/* .home-page {
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    padding: 1.5% 2% 0% 1.5%;
-    width: 100%;
-    height: 100%;
-} */
 
 .home-page h1 {
     font-size: 29px;
@@ -371,19 +384,19 @@ article {
 
 /* ticket management page */
 
-.ticket-management h1 {
+.ticket-management-page h1 {
     font-size: 29px;
     font-weight: bolder;
     line-height: 45px;
     color: #1e0d03;
 }
 
-.ticket-management .ticket-package-list {
+.ticket-management-page .ticket-package-list {
     display: flex;
     height: 40px;
 }
 
-.ticket-management .ticket-package-list div {
+.ticket-management-page .ticket-package-list div {
     margin-right: 20px;
     width: 110px;
     height: 70%;
@@ -391,100 +404,106 @@ article {
     justify-content: center;
 }
 
-.ticket-management .ticket-package-list div:first-child {
+.ticket-management-page .ticket-package-list div:first-child {
     justify-content: start;
 }
 
-.ticket-management .ticket-package-list a {
+.ticket-management-page .ticket-package-list a {
     font-size: 15px;
     font-weight: 500;
     line-height: 26px;
     color: #919DBA;
 }
 
-.ticket-management .ticket-package-list div:hover {
+.ticket-management-page .ticket-package-list div:hover {
     border-bottom: solid 3px #FF993C;
 }
 
-.ticket-management .ticket-package-list div:hover a {
+.ticket-management-page .ticket-package-list div:hover a {
     font-size: 16px;
     font-weight: bold;
     color: #FF993C;
 }
 
-.ticket-management .ticket-package-list .active {
+.ticket-management-page .ticket-package-list .active {
     border-bottom: solid 3px #FF993C;
 }
 
-.ticket-management .ticket-package-list .active a {
+.ticket-management-page .ticket-package-list .active a {
     font-size: 16px;
     font-weight: bold;
     color: #FF993C;
 }
 
-.ticket-management .ticket-filter {
+.ticket-management-page .ticket-filter {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
 
-.ticket-management .ticket-filter .search input {
+.ticket-management-page .ticket-filter .search input {
     background-color: #F7F7F8;
 }
 
-.ticket-management .ticket-filter .search button {
+.ticket-management-page .ticket-filter .search button {
     background-color: #F7F7F8;
 }
 
 
-.ticket-management .ticket-board table {
+.ticket-management-page .ticket-board table {
     border-collapse: separate;
     border-spacing: 0;
 }
 
-.ticket-management .ticket-board table tr:first-child th:first-child {
+.ticket-management-page .ticket-board table tr:first-child th:first-child {
     border-top-left-radius: 9px;
 }
 
-.ticket-management .ticket-board table tr:first-child th:last-child {
+.ticket-management-page .ticket-board table tr:first-child th:last-child {
     border-top-right-radius: 9px;
 }
 
-.ticket-management .ticket-board table th {
+.ticket-management-page .ticket-board table th {
     font-size: 13px;
     font-weight: 600;
     line-height: 26px;
 }
 
-.ticket-management .ticket-board table td {
+.ticket-management-page .ticket-board table td {
     font-size: 12px;
     font-weight: 500;
     line-height: 22px;
     vertical-align: middle;
 }
 
-.ticket-management .ticket-board table .status {
+.ticket-management-page .ticket-board table .status {
     border-radius: 4px;
     padding: 3px 8px;
     width: max-content;
 }
 
-.ticket-management .ticket-board table .used {
+.ticket-management-page .ticket-board table .used {
     border: solid 1px rgba(145, 157, 186, 1);
     background-color: rgba(234, 241, 248, 1);
     color: rgba(145, 157, 186, 1);
 }
 
-.ticket-management .ticket-board table .unused {
+.ticket-management-page .ticket-board table .unused {
     border: solid 1px rgba(3, 172, 0, 1);
     background-color: rgba(222, 247, 224, 1);
     color: rgba(3, 172, 0, 1);
 }
 
-.ticket-management .ticket-board table .expired {
+.ticket-management-page .ticket-board table .expired {
     border: solid 1px rgba(253, 89, 89, 1);
     background-color: rgba(248, 235, 232, 1);
     color: rgba(253, 89, 89, 1);
+}
+
+.ticket-management-page .ticket-board table .ellipsis {
+    width: 25px;
+    height: 100%;
+    background: transparent;
 }
 
 /* pagination */
@@ -521,7 +540,7 @@ article {
     color: rgba(255, 153, 60, 1);
 }
 
-/* modal ticket list */
+/* ticket filter modal */
 
 .ticket-filter-modal .modal-content {
     background-color: rgba(255, 255, 255, 1);
@@ -628,72 +647,174 @@ article {
     text-align: center;
 }
 
-/* Ticket Reconciliation Page */
+/* ticket update modal */
 
-.ticket-reconciliation {
-    display: flex;
+.ticket-update-modal .modal-body table {
+    display: table;
+    width: 100%;
 }
 
-.ticket-reconciliation .data-display {
-    width: 75%;
-}
-
-.ticket-reconciliation .filter {
+.ticket-update-modal .modal-body table td:nth-child(1) {
     width: 25%;
 }
 
-.ticket-reconciliation .data-display .ticket-filter {
+.ticket-update-modal .modal-body table td:nth-child(2) {
+    width: 75%;
+}
+
+.ticket-update-modal .modal-body table tr {
+    height: 35px;
+}
+
+.ticket-update-modal .modal-content {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    padding: 0% 2%;
+}
+
+.ticket-update-modal .modal-header,
+.ticket-update-modal .modal-body,
+.ticket-update-modal .modal-footer {
+    border: none;
+}
+
+.ticket-update-modal .modal-dialog {
+    max-width: 600px;
+}
+
+.ticket-update-modal .modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(30, 13, 3, 1);
+}
+
+.ticket-update-modal .modal-header {
+    justify-content: center;
+}
+
+.ticket-update-modal .modal-body h4 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.ticket-update-modal .modal-body span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ticket-update-modal .modal-body .ticketCodeInput,
+.ticket-update-modal .modal-body .packageCodeInput,
+.ticket-update-modal .modal-body .eventNameInput {
+    display: none;
+}
+
+.ticket-update-modal .modal-footer {
+    justify-content: center;
+}
+
+.ticket-update-modal .modal-footer button {
+    width: 22%;
+    margin: 0% 2%;
+}
+
+.ticket-update-modal .date {
+    display: flex;
+    width: 8rem;
+    height: 2rem;
+}
+
+.ticket-update-modal .date button {
+    background: transparent;
+    border: solid 1px rgba(165, 168, 177, 1);
+    border-left: none;
+    border-radius: 0px 8px 8px 0px;
+    width: 30%;
+}
+
+.ticket-update-modal .date button i {
+    color: #FF993C;
+    font-size: 14px;
+}
+
+.ticket-update-modal .date input {
+    border: solid 1px rgba(165, 168, 177, 1);
+    border-right: none;
+    border-radius: 8px 0px 0px 8px;
+    width: 70%;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.ticket-update-modal .modal-footer .active {
+    border: solid 1px #FF993C;
+    background-color: #FF993C;
+    color: #FFFFFF;
+}
+
+/* Ticket Reconciliation Page */
+
+.ticket-reconciliation-page {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 70% 29%;
+    grid-column-gap: 1%;
+}
+
+.ticket-reconciliation-page .data-display .ticket-filter {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
 
-.ticket-reconciliation .data-display h1 {
+.ticket-reconciliation-page .data-display h1 {
     font-size: 29px;
     font-weight: bolder;
     line-height: 45px;
     color: #1e0d03;
 }
 
-.ticket-reconciliation .data-display .ticket-filter .search input,
-.ticket-reconciliation .data-display .ticket-filter .search button {
+.ticket-reconciliation-page .data-display .ticket-filter .search input,
+.ticket-reconciliation-page .data-display .ticket-filter .search button {
     background-color: #F7F7F8;
 }
 
-.ticket-reconciliation .data-display .ticket-board table {
+.ticket-reconciliation-page .data-display .ticket-board table {
     border-collapse: separate;
     border-spacing: 0;
 }
 
-.ticket-reconciliation .data-display .ticket-board table tr:first-child th:first-child {
+.ticket-reconciliation-page .data-display .ticket-board table tr:first-child th:first-child {
     border-top-left-radius: 9px;
 }
 
-.ticket-reconciliation .data-display .ticket-board table tr:first-child th:last-child {
+.ticket-reconciliation-page .data-display .ticket-board table tr:first-child th:last-child {
     border-top-right-radius: 9px;
 }
 
-.ticket-reconciliation .data-display .ticket-board table th {
+.ticket-reconciliation-page .data-display .ticket-board table th {
     font-size: 13px;
     font-weight: 600;
     line-height: 26px;
 }
 
-.ticket-reconciliation .data-display .ticket-board table td {
+.ticket-reconciliation-page .data-display .ticket-board table td {
     font-size: 12px;
     font-weight: 500;
     line-height: 22px;
     vertical-align: middle;
 }
 
-.ticket-reconciliation .filter h2 {
-    font-size: 24px;
+.ticket-reconciliation-page .filter h2 {
+    font-size: 20px;
     font-weight: bolder;
     line-height: 45px;
     color: #1e0d03;
 }
 
-.ticket-reconciliation .filter .form-select {
+.form-select {
     height: 35px;
     width: 100%;
     padding-left: 5%;
@@ -701,24 +822,23 @@ article {
     border-radius: 8px;
     font-size: 14px;
     font-weight: 500;
-    line-height: 20px;
     color: rgba(124, 125, 149, 1);
     border: none;
 }
 
-.ticket-reconciliation .filter .form-select:focus {
+.form-select:focus {
     outline: none;
     box-shadow: none;
     border: none;
 }
 
-.ticket-reconciliation .filter .table h3 {
-    font-size: 13px;
+.ticket-reconciliation-page .filter .table h3 {
+    font-size: 14px;
     font-weight: 600;
     line-height: 26px;
 }
 
-.ticket-reconciliation .filter .radio-group .radio {
+.ticket-reconciliation-page .filter .radio-group .radio {
     display: flex;
     font-size: 14px;
     font-weight: 500;
@@ -726,21 +846,495 @@ article {
     align-items: center;
 }
 
-.ticket-reconciliation .filter .radio-group .radio input {
+.ticket-reconciliation-page .filter .radio-group .radio input {
     margin-right: 5%;
     width: 18px;
     height: 18px;
 }
 
-.ticket-reconciliation .filter span {
+.ticket-reconciliation-page .filter span {
     font-size: 14px;
     font-weight: 500;
 }
 
-.ticket-reconciliation .filter .button-hover {
+.ticket-reconciliation-page .filter .button-hover {
     padding: 5px 50px;
 }
 
-.ticket-reconciliation .filter .submit {
+.ticket-reconciliation-page .filter .submit {
     text-align: center;
+}
+
+/* services page */
+
+.services-page h1 {
+    font-size: 29px;
+    font-weight: bolder;
+    line-height: 45px;
+    color: #1e0d03;
+}
+
+.services-page .ticket-package-list {
+    display: flex;
+    height: 40px;
+}
+
+.services-page .ticket-package-list div {
+    margin-right: 20px;
+    width: 110px;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+.services-page .ticket-package-list div:first-child {
+    justify-content: start;
+}
+
+.services-page .ticket-package-list a {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 26px;
+    color: #919DBA;
+}
+
+.services-page .ticket-package-list div:hover {
+    border-bottom: solid 3px #FF993C;
+}
+
+.services-page .ticket-package-list div:hover a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FF993C;
+}
+
+.services-page .ticket-package-list .active {
+    border-bottom: solid 3px #FF993C;
+}
+
+.services-page .ticket-package-list .active a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FF993C;
+}
+
+.services-page .ticket-filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.services-page .ticket-filter .search input {
+    background-color: #F7F7F8;
+}
+
+.services-page .ticket-filter .search button {
+    background-color: #F7F7F8;
+}
+
+
+.services-page .ticket-board table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.services-page .ticket-board table tr:first-child th:first-child {
+    border-top-left-radius: 9px;
+}
+
+.services-page .ticket-board table tr:first-child th:last-child {
+    border-top-right-radius: 9px;
+}
+
+.services-page .ticket-board table th {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 26px;
+}
+
+.services-page .ticket-board table td {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 22px;
+    vertical-align: middle;
+}
+
+.services-page .ticket-board table .status {
+    border-radius: 4px;
+    padding: 3px 8px;
+    width: max-content;
+}
+
+.services-page .ticket-board table .active {
+    border: solid 1px rgba(3, 172, 0, 1);
+    background-color: rgba(222, 247, 224, 1);
+    color: rgba(3, 172, 0, 1);
+}
+
+.services-page .ticket-board table .disabled {
+    border: solid 1px rgba(253, 89, 89, 1);
+    background-color: rgba(248, 235, 232, 1);
+    color: rgba(253, 89, 89, 1);
+}
+
+.services-page .ticket-board table .update {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 153, 60, 1);
+    background: transparent;
+}
+
+/* add ticket package modal */
+
+.add-ticket-package .modal-content {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    padding: 0% 2%;
+}
+
+.add-ticket-package .modal-header,
+.add-ticket-package .modal-body,
+.add-ticket-package .modal-footer {
+    border: none;
+}
+
+.add-ticket-package .modal-dialog {
+    max-width: 700px;
+}
+
+.add-ticket-package .modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(30, 13, 3, 1);
+}
+
+.add-ticket-package .modal-header {
+    justify-content: center;
+}
+
+.add-ticket-package .modal-body h4 {
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+}
+
+.add-ticket-package .modal-body span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.add-ticket-package .package-name,
+.add-ticket-package .date-modal,
+.add-ticket-package .price,
+.add-ticket-package .status {
+    margin-bottom: 20px;
+}
+
+.add-ticket-package .modal-footer {
+    justify-content: center;
+}
+
+.add-ticket-package .modal-footer button {
+    width: 22%;
+    margin: 0% 2%;
+}
+
+.add-ticket-package .date-modal,
+.add-ticket-package .date-modal .start-date div,
+.add-ticket-package .date-modal .end-date div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-ticket-package .date-modal .start-date .date:first-child,
+.add-ticket-package .date-modal .end-date .date:first-child {
+    margin-right: 5%;
+}
+
+.add-ticket-package .date {
+    display: flex;
+    width: 8rem;
+    height: 2rem;
+}
+
+.add-ticket-package .package-name input {
+    border: solid 1px rgba(165, 168, 177, 1);
+    border-radius: 8px;
+    width: 50%;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.add-ticket-package .date button {
+    background: transparent;
+    border: solid 1px rgba(165, 168, 177, 1);
+    border-left: none;
+    border-radius: 0px 8px 8px 0px;
+    width: 30%;
+}
+
+.add-ticket-package .date button i {
+    color: #FF993C;
+    font-size: 14px;
+}
+
+.add-ticket-package .date input {
+    border: solid 1px rgba(165, 168, 177, 1);
+    border-right: none;
+    border-radius: 8px 0px 0px 8px;
+    width: 70%;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.add-ticket-package .price .single,
+.add-ticket-package .price .combo {
+    display: flex;
+    align-items: center;
+}
+
+.add-ticket-package .price .single {
+    margin-bottom: 2%;
+}
+
+.add-ticket-package .price .single input[type="checkbox"],
+.add-ticket-package .price .combo input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.add-ticket-package .price .single input[type="number"],
+.add-ticket-package .price .combo input[type="number"] {
+    background-color: rgba(241, 244, 248, 1);
+    border-radius: 8px;
+    width: 10rem;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.add-ticket-package .price .single span,
+.add-ticket-package .price .combo span {
+    margin: 0px 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.add-ticket-package .status .form-select {
+    background-color: inherit;
+    border-radius: 8px;
+    width: 10rem;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border: solid 1px rgba(165, 168, 177, 1);
+}
+
+.add-ticket-package .note {
+    display: flex;
+}
+
+.add-ticket-package .note span {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 15px;
+    opacity: 0.4;
+}
+
+.add-ticket-package .note .text-danger {
+    opacity: 1;
+}
+
+.add-ticket-package .modal-footer .active {
+    border: solid 1px #FF993C;
+    background-color: #FF993C;
+    color: #FFFFFF;
+}
+
+/* add ticket package modal */
+
+.update-ticket-package .modal-content {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    padding: 0% 2%;
+}
+
+.update-ticket-package .modal-header,
+.update-ticket-package .modal-body,
+.update-ticket-package .modal-footer {
+    border: none;
+}
+
+.update-ticket-package .modal-dialog {
+    max-width: 700px;
+}
+
+.update-ticket-package .modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(30, 13, 3, 1);
+}
+
+.update-ticket-package .modal-header {
+    justify-content: center;
+}
+
+.update-ticket-package .modal-body h4 {
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+}
+
+.update-ticket-package .modal-body span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.update-ticket-package .package-info,
+.update-ticket-package .date-modal,
+.update-ticket-package .price,
+.update-ticket-package .status {
+    margin-bottom: 20px;
+}
+
+.update-ticket-package .modal-footer {
+    justify-content: center;
+}
+
+.update-ticket-package .modal-footer button {
+    width: 22%;
+    margin: 0% 2%;
+}
+
+.update-ticket-package .date-modal,
+.update-ticket-package .date-modal .start-date div,
+.update-ticket-package .date-modal .end-date div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.update-ticket-package .date-modal .start-date .date:first-child,
+.update-ticket-package .date-modal .end-date .date:first-child {
+    margin-right: 5%;
+}
+
+.update-ticket-package .date {
+    display: flex;
+    width: 8rem;
+    height: 2rem;
+}
+
+.update-ticket-package .package-info {
+    display: grid;
+    grid-template-columns: 35% 55%;
+    grid-column-gap: 10%;
+}
+
+.update-ticket-package .event-name input {
+    border: solid 1px rgba(165, 168, 177, 1);
+    border-radius: 8px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.update-ticket-package .package-code input {
+    border: solid 1px rgba(165, 168, 177, 1);
+    border-radius: 8px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.update-ticket-package .date button {
+    background: transparent;
+    border: solid 1px rgba(165, 168, 177, 1);
+    border-left: none;
+    border-radius: 0px 8px 8px 0px;
+    width: 30%;
+}
+
+.update-ticket-package .date button i {
+    color: #FF993C;
+    font-size: 14px;
+}
+
+.update-ticket-package .date input {
+    border: solid 1px rgba(165, 168, 177, 1);
+    border-right: none;
+    border-radius: 8px 0px 0px 8px;
+    width: 70%;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.update-ticket-package .price .single,
+.update-ticket-package .price .combo {
+    display: flex;
+    align-items: center;
+}
+
+.update-ticket-package .price .single {
+    margin-bottom: 2%;
+}
+
+.update-ticket-package .price .single input[type="checkbox"],
+.update-ticket-package .price .combo input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.update-ticket-package .price .single input[type="number"],
+.update-ticket-package .price .combo input[type="number"] {
+    background-color: rgba(241, 244, 248, 1);
+    border-radius: 8px;
+    width: 10rem;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.update-ticket-package .price .single span,
+.update-ticket-package .price .combo span {
+    margin: 0px 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.update-ticket-package .status .form-select {
+    background-color: inherit;
+    border-radius: 8px;
+    width: 10rem;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border: solid 1px rgba(165, 168, 177, 1);
+}
+
+.update-ticket-package .note {
+    display: flex;
+}
+
+.update-ticket-package .note span {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 15px;
+    opacity: 0.4;
+}
+
+.update-ticket-package .note .text-danger {
+    opacity: 1;
+}
+
+.update-ticket-package .modal-footer .active {
+    border: solid 1px #FF993C;
+    background-color: #FF993C;
+    color: #FFFFFF;
 }

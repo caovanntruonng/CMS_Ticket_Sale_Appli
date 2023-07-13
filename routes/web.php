@@ -33,6 +33,18 @@ Route::get('/device-management', [MyController::class, 'showDeviceManagementPage
 Route::get('/services', [MyController::class, 'showServicesPage'])->name('ServicesPage');
 
 // Định nghĩa route để xử lý yêu cầu lọc vé và gọi phương thức handleFilterData trong YourController
-Route::get('/ticket-management/{package_code}/filter-data', [MyController::class, 'handleFilterData'])->name('FilterData');
+Route::get('/ticket-management/{package_code}/filter-data', [MyController::class, 'filterTicketManagementPage'])->name('FilterData');
 
 Route::get('/ticket-management/{package_code}', [MyController::class, 'showTicketPackage'])->name('showTicketPackage');
+
+Route::post('/ticket-management/update-start-date', [MyController::class, 'updateStartDate'])->name('updateStartDate');
+
+Route::get('/ticket-reconciliation/filter-data', [MyController::class, 'filterTicketReconciliationPage'])->name('filterTicketReconciliationPage');
+
+Route::get('/ticket-reconciliation/reconciliation-status', [MyController::class, 'reconciliationStatus'])->name('reconciliationStatus');
+
+Route::post('/services/add-ticket-package', [MyController::class, 'addTicketPackage'])->name('addTicketPackage');
+
+Route::post('/services/update-ticket-package', [MyController::class, 'updateTicketPackage'])->name('updateTicketPackage');
+
+Route::get('/exportCsv', [MyController::class, 'exportCSV'])->name('exportCSV');

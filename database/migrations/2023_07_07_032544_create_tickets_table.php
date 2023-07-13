@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('package_code');
             $table->foreign('package_code')->references('package_code')->on('ticket_packages'); // ->onDelete('cascade')->onUpdate('cascade');
             $table->string('ticket_code');
-            $table->string('event_name');
+            $table->string('ticket_type');
             $table->string('usage_status');
             $table->datetime('start_date');
             $table->datetime('end_date');
             $table->string('check_in_gate');
+            $table->string('reconciliation_status')->nullable();
             $table->timestamps();
         });
     }

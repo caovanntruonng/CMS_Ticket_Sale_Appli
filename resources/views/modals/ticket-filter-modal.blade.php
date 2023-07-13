@@ -1,5 +1,5 @@
 <!-- The Modal -->
-<div class="modal fade ticket-filter-modal" id="myModal">
+<div class="modal fade ticket-filter-modal" id="myFilter">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form action="{{ route('FilterData', ['package_code' => session('packageCode')]) }}" method="GET">
@@ -14,7 +14,7 @@
                         <div class="modal-start-date">
                             <h1>Từ ngày</h1>
                             <div class="date">
-                                <input type="text" name="start-date" id="startDatePicker" class="">
+                                <input type="text" name="start-date" id="startDatePicker" class="" placeholder="dd/mm/yy">
                                 <button type="button">
                                     <i class="fa-regular fa-calendar"></i>
                                 </button>
@@ -23,7 +23,7 @@
                         <div class="modal-end-date">
                             <h1>Đến ngày</h1>
                             <div class="date">
-                                <input type="text" name="end-date" id="endDatePicker" class="">
+                                <input type="text" name="end-date" id="endDatePicker" class="" placeholder="dd/mm/yy">
                                 <button type="button">
                                     <i class="fa-regular fa-calendar"></i>
                                 </button>

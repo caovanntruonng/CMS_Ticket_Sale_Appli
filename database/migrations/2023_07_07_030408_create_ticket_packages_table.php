@@ -15,9 +15,10 @@ return new class extends Migration
             $table->increments('id');
             $table->string('package_code')->unique();
             $table->string('package_name');
+            $table->string('event_name')->nullable();
             $table->datetime('start_date');
             $table->datetime('end_date');
-            $table->bigInteger('ticket_price');
+            $table->bigInteger('ticket_price')->nullable();
             $table->bigInteger('combo_price_amount')->nullable();
             $table->bigInteger('combo_price_tickets')->nullable();
             $table->string('status');

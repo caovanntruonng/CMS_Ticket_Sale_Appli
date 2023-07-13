@@ -44,30 +44,58 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         firstDayOfWeek: 1,
     };
-    const selectedDate = new Date();
+    const today = new Date();
+    const time = today.getTime();
     flatpickr("#lineChartDatePicker", {
         dateFormat: "m-Y",
         locale: customVietnameseLocale,
-        defaultDate: selectedDate,
+        defaultDate: today,
     });
     flatpickr("#pieChartDatePicker", {
         dateFormat: "m-Y",
         locale: customVietnameseLocale,
-        defaultDate: selectedDate,
+        defaultDate: today,
     });
     flatpickr("#startDatePicker", {
         dateFormat: "d/m/Y",
         locale: customVietnameseLocale,
-        defaultDate: selectedDate,
+        defaultDate: today,
     });
     flatpickr("#endDatePicker", {
         dateFormat: "d/m/Y",
         locale: customVietnameseLocale,
-        defaultDate: selectedDate,
+        defaultDate: today,
     });
     flatpickr("#checkTicketsDatePicker", {
         dateFormat: "d/m/Y",
         locale: customVietnameseLocale,
-        defaultDate: selectedDate,
+        defaultDate: today,
+    });
+    flatpickr("#updateDatePicker", {
+        dateFormat: "d/m/Y",
+        locale: customVietnameseLocale,
+        defaultDate: today,
+    });
+    flatpickr("#addPackageDatePicker", {
+        dateFormat: "d/m/Y",
+        locale: customVietnameseLocale,
+        defaultDate: today,
+    });
+    flatpickr("#addPackageTimePicker", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i:S",
+        time_24hr: true,
+        defaultDate: time,
+    });
+    flatpickr("#updatePackageDatePicker", {
+        dateFormat: "d/m/Y",
+        locale: customVietnameseLocale,
+    });
+    flatpickr("#updatePackageTimePicker", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i:S",
+        time_24hr: true,
     });
 });
