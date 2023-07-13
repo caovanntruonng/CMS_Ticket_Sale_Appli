@@ -16,7 +16,7 @@
         <canvas id="lineChart" class=""></canvas>
     </div>
     <div class="total-weekly-revenue">
-        <span>Tổng doanh thu theo tuần</span>
+        <span>Tổng doanh thu theo tháng</span>
         <div class="revenue-money">
             <h1 class="monthlyTotal">521.000.000</h1>
             <span>&nbsp;đồng</span>
