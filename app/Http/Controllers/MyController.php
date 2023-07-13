@@ -83,8 +83,8 @@ class MyController extends Controller
 
         // export
         $exportData = DB::table('tickets')
-        ->leftJoin('ticket_packages', 'tickets.package_code', '=', 'ticket_packages.package_code')
-        ->select('tickets.*', 'ticket_packages.event_name')->get();
+            ->leftJoin('ticket_packages', 'tickets.package_code', '=', 'ticket_packages.package_code')
+            ->select('tickets.*', 'ticket_packages.event_name')->get();
 
         $data = [[
             'id',
@@ -159,7 +159,7 @@ class MyController extends Controller
             ];
         }
         session(['exportData' => $data]);
-        
+
         $ticket_packages = $this->paginate($ticketsQuery);
 
         return view('services', compact('ticket_packages'));
@@ -519,7 +519,7 @@ class MyController extends Controller
         return back();
     }
 
-    function updateTicketPackage(Request $request)
+    public function updateTicketPackage(Request $request)
     {
         $packageCode = $request->input('package-code');
         $eventName = $request->input('event-name');
